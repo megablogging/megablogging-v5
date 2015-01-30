@@ -1,0 +1,11 @@
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEID:anutun
+# DO NOT REMOVE THIS LINE AND THE LINES ABOVE anutun:ERRORPAGEID
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule category/([0-9]+)$ index.php?act=category&id=$1
+RewriteRule post/([0-9]+)$ index.php?act=post&id=$1
+RewriteRule pages/([0-9]+)$ index.php?act=pages&id=$1
+RewriteRule user/([0-9]+)$ index.php?act=user&id=$1
+RewriteRule files/([0-9]+)$ index.php?act=files&id=$1
+RewriteRule feed$ index.php?act=feed&id=1

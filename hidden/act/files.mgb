@@ -1,0 +1,28 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	$idnya=$_GET['id'];
+	if ($act == 'view'){
+		//view or download file
+		header("location:$c_go_url/files/$idnya");
+	}else if($act=='delete'){
+		//delete
+		$h_id = abs((int)$_GET['id']);
+		$data_file = $db->fetch("select folder, filename from files where id='$h_id'");
+		//delete file
+		if(is_array($data_file)){
+			$main_dir = ROOT."/mgb-dir/uploads";
+			$file_to_delete = "$main_dir/$data_file[folder]/$data_file[filename]";
+			unlink($file_to_delete);
+			if ($db->query("delete from files where id='$h_id' and user='$admin_id'")){
+				header("location:files.mgb?msg=1");
+			}
+		}else{
+			echo "File Not Found!";
+			exit();
+		}
+	}
+}
+?>

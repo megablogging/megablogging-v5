@@ -1,0 +1,123 @@
+/*******************************************************************************
+                                    GENERAL
+*******************************************************************************/
+
+body{
+    background-color: #f1f1f1;
+}
+
+#wrapper {
+    background-color: #f1f1f1;
+}
+
+
+/*******************************************************************************
+                                    TOP NAVIGATION
+*******************************************************************************/
+
+#top-nav .brand {
+    color: #ffffff;
+    background: #2f313a;
+    font-family: 'open_sanssemibold';
+}
+
+/*******************************************************************************
+                                    ASIDE
+*******************************************************************************/
+
+aside {
+    background-color: #2f313a;
+}
+
+aside .sidebar-inner .search-block input[type=text] {
+    background: #1e1f24;
+    border: 1px solid #1e1f24;
+}
+
+aside .sidebar-inner .search-block .btn {
+    color: #ccc;
+    background: #1e1f24;
+    border: 1px solid #1e1f24;
+}
+
+aside .main-menu>ul>li {
+    border-top: 1px solid #1e2026;
+    border-bottom: 1px solid #3a3c44;
+}
+
+aside .main-menu>ul>li>a {
+    color: #a6abbc;
+    font-size: 13px;
+    padding: 13px 10px 13px 13px;
+    text-shadow: 0 0px 1px rgba(0,0,0,.5);
+    font-family: 'open_sanssemibold';
+}
+
+aside .main-menu>ul>li.active {
+    border-top: 1px solid #5f97fb;
+    border-bottom: none;
+}
+
+aside .main-menu>ul>li.active>a {
+    color: #fff;
+    background: #5f97fb;
+}
+
+aside .main-menu>ul>li .submenu li a {
+    background-color: #404350;
+}
+
+@media (min-width:768px) {
+/*    #wrapper.sidebar-mini aside .sidebar-inner .main-menu>ul>li .submenu li a:hover {
+        background-color: #5f97fb;
+    }
+    
+    #wrapper.sidebar-mini aside .sidebar-inner .main-menu>ul>li .submenu li a:hover .submenu-label {
+        color: #ffffff!important;
+    }*/
+
+}
+
+/*******************************************************************************
+                                    CONTENT
+*******************************************************************************/
+
+.breadcrumb {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    box-shadow: none;
+}
+
+.main-header {
+    padding: 20px;
+    background: #ffffff;
+    font-family: 'open_sansregular';
+}
+
+#scroll-to-top:focus,#scroll-to-top:hover {
+    background: #00aced;
+}
+
+.pagination>.active>a, 
+.pagination>.active>span, 
+.pagination>.active>a:hover, 
+.pagination>.active>span:hover, 
+.pagination>.active>a:focus, 
+.pagination>.active>span:focus {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #2f313a;
+    border-color: #2f313a;
+}
+
+
+
+/*ERROR*/
+.formError .formErrorArrow div {
+    background: #546571;
+}
+
+.formError .formErrorContent{
+    background: #546571;
+}

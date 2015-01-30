@@ -1,0 +1,8 @@
+<?PHP
+#monthly report----------------------------------------------------------
+$this_month=date("Y-m");
+$last_month = date("Y-m", strtotime("-1 month"));
+$hits_last_month = $db->fetch("SELECT sum(hits) from statistik where date like '%$last_month%'");$hits_last_month=$hits_last_month[0];
+$hits_this_month = $db->fetch("SELECT sum(hits) from statistik where date like '%$this_month%'");$hits_this_month=$hits_this_month[0];
+#--------------------------------------------------------------------
+?>

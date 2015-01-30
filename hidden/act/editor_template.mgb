@@ -1,0 +1,20 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'editor'){
+		//save
+		$file = $_POST['file'];
+		$code = $_POST['code'];
+		$file_path = TEMPLATE_DIR."/$file";
+		$do = $app->save_file($file_path, utf8_encode($code));
+		if($do){
+			header("location:editor_template.mgb?file=$file&msg=1");
+		}else{
+			echo "Oppss... something went wrong when saving file.. make sure you has change permisson of megablogging to : all files = 775 , all folders = 644";
+			exit();
+		}
+	}
+}
+?>

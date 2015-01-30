@@ -1,0 +1,4 @@
+# DO NOT REMOVE THIS LINE AND THE LINES BELOW ERRORPAGEerror:anutun
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule ^(.*)\.mgb $1.php [QSA,L]

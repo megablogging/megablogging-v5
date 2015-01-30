@@ -1,0 +1,18 @@
+<?PHP
+$all_hits_browser = 0;
+$sql_browser = $db->fetch_multiple("select * from browser");
+foreach($sql_browser as $data_browser){
+$all_hits_browser += $data_browser['hits'];
+$nama_browser = $data_browser['name'];
+$hits_browser = $data_browser['hits'];
+$data_brow = $db->fetch("select * from browser where name='$nama_browser'");
+define("$nama_browser", $data_brow['hits']);
+}
+//mencari persentasenya di sini
+$percen_firefox = Firefox / $all_hits_browser * 100;
+$percen_chrome = Chrome / $all_hits_browser * 100;
+$percen_opera = Opera / $all_hits_browser * 100;
+$percen_ie = IE / $all_hits_browser * 100;
+$percen_safari = Safari / $all_hits_browser * 100;
+$percen_others = Others / $all_hits_browser * 100;
+?>

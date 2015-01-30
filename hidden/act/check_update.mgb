@@ -1,0 +1,25 @@
+									<?PHP
+									//auto check new version of megablogging
+									$site_megablogging = "http://megablogging.org";
+									if ($type_site == "Offline"){
+										$updated = true;
+										echo "<a target='_blank' href='$site_megablogging' class='btn btn-success btn-sm'><i class='fa fa-desktop'></i> Official Site Of Megablogging</a>
+										<a target='_blank' href='$site_megablogging/download.html' class='btn btn-primary btn-sm'><i class='fa fa-cloud-download'></i> Download New Version Of Megablogging</a>";
+									}else{
+									//check update from megablogging.org use xml
+									$info_xml = "$site_megablogging/info-xml.php?uri=$c_url";
+									$xml = simplexml_load_file($info_xml);
+										if (!$xml){
+											$updated = true;
+											exit();
+										}else{
+										$lastest_version = $xml->lastest[0]->version;
+										$link_article = $xml->lastest[0]->link_article;
+											if ($lastest_version != _V_){
+												$updated = false;
+											}else{
+												$updated = true;
+											}
+										}
+									}
+									?>

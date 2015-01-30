@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<template>
+	<template_name>Default Template</template_name>
+	<template_folder>default</template_folder>
+	<template_version>1.3.2</template_version>
+	<template_link>http://blog.mas-dewa.com/read/default-template-for-megablogging/</template_link>
+	<template_image>ss_template</template_image>
+	<author>Dewa</author>
+	<author_email>saya@mas-dewa.com</author_email>
+	<author_link>http://www.mas-dewa.com</author_link>
+	<date_create>30 Desember 2014</date_create>
+	<description>Default Template : Free Responsive Bootstrap 3 Template For Megablogging</description>
+</template>

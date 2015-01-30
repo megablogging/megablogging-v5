@@ -1,0 +1,49 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'add'){
+		//add new link
+		$judul = addslashes($_POST['judul']);
+		$cover = $_POST['cover'];
+		$tipe = $_POST['tipe'];
+		$movies = $_POST['movies'];
+		$link = strtolower($judul);
+		$link = $app->replace_char($link);
+		$cek_link = $db->num_rows("select id from links where link='$link'");
+		$now = date("H:i:s");
+		$today = date("Y-m-d");
+		if ($cek_link != 0){
+			$rand_num = rand(1000, 10000);
+			$link = "$link-$rand_num";
+		}
+		$isi = addslashes($_POST['isi']);
+		$data_insert = array("movies_link"=>$movies,"tipe"=>$tipe,"cover"=>$cover,"link"=>$link,"uid"=>$admin_id, "judul"=>$judul, "isi"=>$isi, "hits"=>0, "date"=>$today, "time"=>$now);
+		$db->insert("links", $data_insert);
+		header("location:links.mgb?msg=1");
+	}else if($act=='delete'){
+		//delete
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from links where id='$h_id'")){
+			header("location:links.mgb?msg=2");
+		}
+	}else if($act=='edit'){
+		//edit
+		$judul = addslashes($_POST['judul']);
+		$cover = $_POST['cover'];
+		$tipe = $_POST['tipe'];
+		$idnya = $_POST['idnya'];
+		$movies = $_POST['movies'];
+		$now = date("H:i:s");
+		$today = date("Y-m-d");
+		if ($cek_link != 0){
+			$rand_num = rand(1000, 10000);
+			$link = "$link-$rand_num";
+		}
+		$isi = addslashes($_POST['isi']);
+		$db->query("update links set movies_link='$movies', tipe='$tipe', cover='$cover', isi='$isi' where id='$idnya'");
+		header("location:links.mgb?msg=3");
+	}
+}
+?>

@@ -1,0 +1,43 @@
+<!-- Widget of mega blogging "Statistik widget" -->						
+						<table style="border: none;font-size: 12px;color: #5b5b5b;width: 100%;margin: 10px 0 10px 0;">
+						<tr><td style="border: none;padding: 4px;">TOATAL PAGE HITS</td><td align="right" style="border: none;padding: 4px;"><b>
+						<?PHP
+						$min_digits = 0;
+						$count = $all_hits;	  
+						$count = sprintf('%0'.$min_digits.'s',$count);
+						$len = strlen($count);
+						for ($i=0;$i<$len;$i++)
+						echo '<img src="'.$c_url."/mgb-dir/file-manager/images/number/default/". substr($count,$i,1) . '.' . 'gif' .'" border="0">';    
+						?>
+						</b></td></tr>
+						<tr><td style="border: none;padding: 4px;">PAGE HITS TODAY</td><td align="right" style="border: none;padding: 4px;"><b>
+						<?PHP
+						$count = $hits_today;	  
+						$count = sprintf('%0'.$min_digits.'s',$count);
+						$len = strlen($count);
+						for ($i=0;$i<$len;$i++)
+						echo '<img src="'.$c_url."/mgb-dir/file-manager/images/number/default/". substr($count,$i,1) . '.' . 'gif' .'" border="0">';    
+						?>
+						</b></td></tr>
+						<tr><td style="border: none;padding: 4px;">PAGE HITS YESTERDAY</td><td align="right" style="border: none;padding: 4px;"><b>
+						<?PHP
+						$count = $hits_yesterday;	  
+						$count = sprintf('%0'.$min_digits.'s',$count);
+						$len = strlen($count);
+						for ($i=0;$i<$len;$i++)
+						echo '<img src="'.$c_url."/mgb-dir/file-manager/images/number/default/". substr($count,$i,1) . '.' . 'gif' .'" border="0">';    
+						?>
+						</b></td></tr>
+						<?PHP if (!empty($a_hits) and !empty($link)){ ?>
+						<tr><td style="border: none;padding: 4px;">HITS THIS ARTICLE</td><td align="right" style="border: none;padding: 4px;"><b>
+						<?PHP
+						$count = $a_hits;	  
+						$count = sprintf('%0'.$min_digits.'s',$count);
+						$len = strlen($count);
+						for ($i=0;$i<$len;$i++)
+						echo '<img src="'.$c_url."/mgb-dir/file-manager/images/number/default/". substr($count,$i,1) . '.' . 'gif' .'" border="0">';    
+						?>
+						</b></td></tr>
+						<?PHP } ?>
+						</table>
+<!--- [wg-mgb-megasoft] -->

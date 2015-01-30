@@ -1,0 +1,51 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'use'){
+		//use template
+		$template_file = $_GET['file'];
+		$template_name = str_replace(".xml", "", $template_file);
+		if (file_exists(ROOT."/template/$theme_file")){
+			$ini_file = ROOT."/config.ini.php";
+			$ini_value = get_parse_ini($ini_file);
+			$ini_value['config']['template'] = $template_name;
+			$sql = put_ini_file("$ini_file", $ini_value, $i = 0);
+			if ($sql){
+				header("location:template.mgb?msg=1&isi=$template_name");
+			}
+			else{
+				$m_tipe = "danger";
+				$messages = "Oppss.. cannot save content to config.ini.php, please make permission file to 775, and permission folder 644!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+				require_once("messages.php");
+				exit();
+			}
+		}
+	}else if($act=='delete'){
+		//uninstall template
+		$template_file = $_GET['file'];
+		$template_name = str_replace(".xml", "", $template_file);
+		if ($c_template == $template_name){
+			$m_tipe = "danger";
+			$messages = "Oppss.. This Template Still Use As Default Template so you cannot delete this Template!!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		if (file_exists(ROOT."/template/$template_file")){
+			include(ROOT."/mgb-dir/lib/remove_dir.lib.php");
+			if ($app->rrmdir(ROOT."/template/$template_name") == 1){
+				if (unlink(ROOT."/template/$template_file")){
+					header("location:template.php?msg=2&isi=$template_name");
+				}else{
+					echo "Failed To Delete Template : $template_name";
+					exit();
+				}
+			}else{
+				echo "Failed To Delete Directory";
+				exit();
+			}
+		}
+	}	
+}
+?>

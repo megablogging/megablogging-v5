@@ -1,0 +1,129 @@
+/* FOOTER
+-------------------------------------------------- */
+#footer {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#top-footer {
+  padding: 60px 0 20px 0;
+  color:#adadad;
+}
+
+#bottom-footer a{
+  
+}
+
+#top-footer h4 {
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #adadad;
+  font-size: 15px;
+}
+
+#top-footer ul.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#bottom-footer {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#copy-text {
+  line-height: 20px;
+  font-size: 12px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#footer-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer-links > li {
+  display: inline-block;
+  margin: 0 0 0 20px;
+}
+
+#footer-links > li > a {
+  line-height: 20px;
+  font-size: 11px;
+  margin: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#footer-links > li > a:hover {
+  color: white;
+}
+
+#footer ul.social-links li {
+  margin: 0 8px 0 0;
+  opacity: 1;
+}
+
+#footer ul.social-links li i {
+  line-height: 33px;
+  width: 33px;
+  background: none;
+  border: 1px solid #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#footer ul.social-links li:hover i {
+  background: #fff;
+  color: #2f4e6f;
+}
+
+#footer ul.tweetList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+#footer ul.tweetList a {
+  color: white;
+}
+
+#footer ul.tweetList p {
+  margin: 0;
+}
+
+#footer ul.tweetList .timestamp {
+  color: rgba(255, 255, 255, 0.2);
+  font-style: italic;
+}
+
+#footer ul.tweetList li > i {
+  display: block;
+  float: left;
+  width: 15%;
+  font-size: 30px;
+  height: 100%;
+}
+
+#footer ul.tweetList li > p {
+  width: 85%;
+  display: block;
+  float: right;
+}
+
+.img-footer-a{
+width:100px;
+float:left;
+margin-right:10px;
+}
+.text-footer-a{
+}

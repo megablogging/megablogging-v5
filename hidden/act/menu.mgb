@@ -1,0 +1,99 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'add_mn'){
+		//add new menu
+		$data_menu = $db->fetch("select * from menu order by menu.number DESC");
+		$menu_last_number = $data_menu['number'];
+		$menu_number = $menu_last_number + 1;
+		$menu_name = addslashes($_POST['menu_name']);
+		$menu_name = str_replace('"', "'", $menu_name);
+		$menu_type = $_POST['menu_type'];
+		if ($menu_type == 0){
+			$m_tipe = "danger";
+			$messages = "Please Select Some Option From Menu Type!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		if ($menu_type == 1){$menu_link = $_POST['menu_link'];$menu_target = $_POST['menu_target'];}
+		if ($menu_type == 2){$menu_link = '#';$menu_target = '_self';}
+		//do it
+		if (empty($menu_link)){
+			echo "Please Input Link For This Menu! <a href='add_menu.php'>Add Menu</a>";
+			exit();
+		}else{
+			$sql = "insert into menu values('', '$menu_name', '$menu_link', '$menu_type', '$menu_target', '$menu_number')";
+			if ($db->query($sql)){
+				header("location:menu.mgb?msg=1&isi=$menu_name");
+			}else{
+				echo "Error while insert data to database";
+			}
+		}
+	}else if($act=='delete_mn'){
+		//delete menu
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from menu where id='$h_id'")){
+			header("location:menu.mgb?msg=2");
+		}
+	}else if($act=='edit_mn'){
+		//edit menu
+		$h_id = abs((int)$_POST['idnya']);
+		$menu_name = addslashes($_POST['menu_name']);
+		$menu_name = str_replace('"', "'", $menu_name);
+		$menu_type = $_POST['menu_type'];
+		if ($menu_type == 1){$menu_link = $_POST['menu_link'];$menu_target = $_POST['menu_target'];}
+		if ($menu_type == 2){$menu_link = '#';$menu_target = '_self';}
+		//do it
+		if (empty($menu_link)){
+			$m_tipe = "danger";
+			$messages = "Please Input Link For This Menu!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}else{
+			$sql = "update menu set name='$menu_name', link='$menu_link', type='$menu_type', target='$menu_target' where id='$h_id'";
+			if ($db->query($sql)){
+				header("location:menu.mgb?msg=5");
+			}else{
+				echo "Error while insert data to database";
+			}
+		}
+	}else if($act=='delete_sm'){
+		//delete submenu
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from submenu where id='$h_id'")){
+			header("location:menu.mgb?msg=4");
+		}
+	}else if($act=='add_sm'){
+		//add submenu
+		$submenu_name = addslashes($_POST['submenu_name']);
+		$submenu_name = str_replace('"', "'", $submenu_name);
+		$submenu_menu = $_POST['submenu_menu'];
+		$submenu_link = $_POST['submenu_link'];
+		$submenu_target = $_POST['submenu_target'];
+		$sql = "insert into submenu values('', '$submenu_name', '$submenu_link', '$submenu_menu', '$submenu_target')";
+		if ($db->query($sql)){
+			header("location:menu.mgb?msg=3&isi=$submenu_name");
+		}else{
+			echo "Error while insert data into database!";
+			exit();
+		}	
+	}else if($act=='edit_sm'){
+		//edit submenu
+		$h_id = $_POST['idnya'];
+		$submenu_name = addslashes($_POST['submenu_name']);
+		$submenu_name = str_replace('"', "'", $submenu_name);
+		$submenu_menu = $_POST['submenu_menu'];
+		$submenu_link = $_POST['submenu_link'];
+		$submenu_target = $_POST['submenu_target'];
+		$sql = "update submenu set name='$submenu_name', link='$submenu_link', menu='$submenu_menu', target='$submenu_target' where id='$h_id'";
+		if ($db->query($sql)){
+			header("location:menu.mgb?msg=6");
+		}else{
+			echo "Error while insert data into database!";
+			exit();			
+		}
+	}
+}
+?>

@@ -1,0 +1,54 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'e_profile'){
+		//edit profile
+		$name = $_POST['name'];
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+		$image = $_POST['image'];
+		$link = $_POST['link'];
+		$bio =  addslashes($_POST['bio']);
+		//cek-cek
+		if ($db->num_rows("select id from admin where email='$email'") != 0 and $email!=$a_email){
+			$m_tipe = "danger";
+			$messages = "Sorry email : <b>$email</b> already use by another person! please input another email!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		if ($db->num_rows("select id from admin where username='$username'") != 0 and $username!=$a_username){
+			$m_tipe = "danger";
+			$messages = "Sorry username : <b>$username</b> already use by another person! please input another username!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		//do update
+		$do = $db->query("update admin set name='$name', username='$username', email='$email', image='$image', link='$link', bio='$bio' where id='$admin_id'");
+		if($do){header("location:edit_me.mgb?msg=1");}else{header("location:edit_me.mgb?msg=2");}
+	}else if($act=='e_pass'){
+		//edit password
+		$old_pass = $_POST['old_pass'];
+		$new_pass = $_POST['new_pass'];
+		$r_pass = $_POST['r_pass'];
+		//cek-cek 
+		if(md5($old_pass) != $a_pswd){
+			$m_tipe = "danger";
+			$messages = "Oppss.. Old Password Is Wrong, Try Again!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		if($new_pass != $r_pass){
+			$m_tipe = "danger";
+			$messages = "Oppss.. New Password And Retype Password Must Be Same, Try Again!<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+		//update it
+		$new_password = md5($new_pass);
+		$do = $db->query("update admin set pswd='$new_password' where id='$admin_id'");
+		if($do){header("location:edit_me.mgb?msg=3");}else{header("location:edit_me.mgb?msg=4");}
+	}	
+}
+?>

@@ -1,0 +1,44 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	$widget_dir = ROOT."/mgb-dir/widget/";
+	if ($act == 'add'){
+		//add new widget
+		$title = addslashes($_REQUEST['title']);
+		$content = utf8_encode($_REQUEST['content']);
+		$widget_target = rand(0, 10000)."-".str_replace(' ', '-', strtolower($title)).'.mgb';
+		$data_wg = $db->fetch("select number from widget order by widget.number DESC");
+		$wg_last_number = $data_wg['number'];
+		$wg_number = $wg_last_number + 1;
+		if ($app->save_file($widget_dir.$widget_target, $content)){
+			$data_insert = array("title"=>$title, "content"=>$widget_target, "number"=>$wg_number, "type"=>2);
+			$db->insert("widget", $data_insert);
+			header("location:widget.mgb?msg=1");
+		}else{
+			echo "Opps.. something wrong when saving file! try again later";
+			exit();
+		}
+	}else if($act=='delete'){
+		//delete
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from widget where id='$h_id'")){
+			header("location:widget.mgb?msg=2");
+		}
+	}else if($act=='edit'){
+		//view
+		$wg_id = abs((int)$_REQUEST['wg_id']);
+		$title = addslashes($_REQUEST['title']);
+		$content = utf8_encode($_REQUEST['content']);
+		$widget_target = $_REQUEST['target'];
+		if ($app->save_file($widget_dir.$widget_target, $content)){
+			$db->query("update widget set title='$title' where id='$wg_id'");
+			header("location:widget.mgb?msg=3");
+		}else{
+			echo "Opps.. something wrong when saving file! try again later";
+			exit();
+		}
+	}
+}
+?>

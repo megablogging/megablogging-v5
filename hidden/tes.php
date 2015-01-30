@@ -1,0 +1,1 @@
+<a href='forgot.php?act=recover&email=saya@mas-dewa.com&activation=$activation_key'>kik</a>

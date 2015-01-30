@@ -1,0 +1,54 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'e_basic'){
+		//edit profile
+		$n_title = $_POST['title'];
+		$n_email = $_POST['email'];
+		$n_site_url = $_POST['site_url'];
+		$n_go_url = $_POST['go_url'];
+		$n_perpage = $_POST['perpage'];
+		$n_max = $_POST['max'];
+		$n_background = $_POST['background'];
+		$n_type_site = $_POST['type_site'];
+		$n_type_editor = $_POST['type_editor'];
+		$n_type_sidebar = $_POST['type_sidebar'];
+		//ldo it
+		$ini_file = ROOT."/config.ini.php";
+		$ini_value = get_parse_ini($ini_file);
+		//start
+		$ini_value['config']['email'] = $n_email;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['url'] = $n_site_url;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['go_url'] = $n_go_url;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['show'] = $n_perpage;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['title'] = $n_title;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['max'] = $n_max;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['background'] = $n_background;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['type_site'] = $n_type_site;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['editor'] = $n_type_editor;
+		put_ini_file("$ini_file", $ini_value, $i = 0);
+		$ini_value['config']['sidebar'] = $n_type_sidebar;
+		$do = put_ini_file("$ini_file", $ini_value, $i = 0);
+		if ($do){
+			header("location:setting.mgb?msg=1");
+		}else{
+			$m_tipe = "danger";
+			$messages = "Opps.. : something went wrong when saving data to '<i>$ini_file</i>' !<br><a class='btn btn-primary' onclick='window.history.back()'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}
+	}else if($act=='e_pass'){
+		//edit something
+	}	
+}
+?>

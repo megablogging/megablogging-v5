@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'pirata-one';
+    src: url('pirata-one.ttf');
+}
+.text_other_page{
+font-family:pirata-one;
+font-size:200px;
+margin-top:60px;
+}

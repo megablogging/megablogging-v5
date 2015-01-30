@@ -1,0 +1,12 @@
+<?PHP
+$data_sql = $db->fetch_multiple("select * from category order by category.name ASC");
+foreach($data_sql as $data_category){
+$category_name = $data_category['name'];
+$category_link = $data_category['link'];
+$jumlah_category = $db->num_rows("select * from article where `category` like '%$category_name%'");
+$ok_link = $app->get_link_cat($category_link);
+echo "
+<span class='label label-default' style='margin-top:5px;margin-right:5px;'><a style='color:white' href='$ok_link'>$category_name ($jumlah_category)</a></span>
+";
+}
+?>

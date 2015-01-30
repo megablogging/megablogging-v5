@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<data>
+	<file>
+		<filename>konfigurasi-template.php</filename>
+		<path>konfigurasi-template.php</path>
+		<type>File Konfigurasi</type>
+		<description>File Untuk Mengkonfigurasi Bentuk, warna, dan pengaturan template secara meneyeluruh</description>
+	</file>
+	<file>
+		<filename>stylesheet.php</filename>
+		<path>stylesheet.php</path>
+		<type>Other</type>
+		<description>File Tempat Meload semua file stylesheet/css</description>
+	</file>
+	<file>
+		<filename>javascript.php</filename>
+		<path>javascript.php</path>
+		<type>Other</type>
+		<description>File Tempat Meload semua file javascript/js</description>
+	</file>
+	<file>
+		<filename>index.php</filename>
+		<path>index.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout Home Page website</description>
+	</file>
+	<file>
+		<filename>view.php</filename>
+		<path>view.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout Lihat Detail artikel</description>
+	</file>
+	<file>
+		<filename>category.php</filename>
+		<path>category.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout Category artike</description>
+	</file>
+	<file>
+		<filename>search.php</filename>
+		<path>search.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout Pencarian artikel</description>
+	</file>
+	<file>
+		<filename>pages.php</filename>
+		<path>pages.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout Pages</description>
+	</file>
+	<file>
+		<filename>404.php</filename>
+		<path>404.php</path>
+		<type>Engine</type>
+		<description>File Untuk Membentuk Layout 404 (Page Not Found)</description>
+	</file>
+	<file>
+		<filename>header.php</filename>
+		<path>header.php</path>
+		<type>Layout</type>
+		<description>File Untuk Membentuk Layout Header Website (Termasuk Menu)</description>
+	</file>
+	<file>
+		<filename>widget.php</filename>
+		<path>widget.php</path>
+		<type>Layout</type>
+		<description>File Untuk Membentuk Layout Dari Widget Website</description>
+	</file>
+	<file>
+		<filename>footer.php</filename>
+		<path>footer.php</path>
+		<type>Layout</type>
+		<description>File Untuk Membentuk Layout Footer Website (Copyright)</description>
+	</file>
+	<file>
+		<filename>related_article.php</filename>
+		<path>include/related_article.php</path>
+		<type>Tambahan</type>
+		<description>Untuk Membuat Related Article Tepat di bawah artikel</description>
+	</file>
+</data>

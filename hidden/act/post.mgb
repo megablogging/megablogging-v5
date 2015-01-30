@@ -1,0 +1,55 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act=='add'){
+		//add
+		$title = addslashes($_POST['title']);
+		$category = $_POST['category'];
+		$category = implode($category, ',');
+		$image = $_POST['image'];
+		$isi = addslashes($_POST['isi']);
+		$link = strtolower($title);
+		$link = str_replace(' ', '-', $link);
+		$link = $app->replace_char($link);
+		$waktu = date('H:i:s');
+		$shoot = strip_tags($isi, "<b><u>");
+		$shoot = substr($shoot, 0, 400)."....";
+		$tanggal = date('Y-m-d');
+		//do insert
+		$data_insert = array("title"=>$title, "content"=>$isi, "time"=>$waktu, "date"=>$tanggal, "link"=>$link, "category"=>$category, "image"=>$image, "shoot"=>$shoot, "user"=>$admin_id);
+		$db->insert("article", $data_insert);
+		header("location:post.mgb?msg=1");
+		exit();
+	}else if($act=='delete'){
+		//delete
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from article where id='$h_id'")){
+			header("location:post.mgb?msg=2");
+			exit();
+		}
+	}
+	else if($act=='edit'){
+		//edit
+		$art_id = $_POST['art_id'];
+		$title = addslashes($_POST['title']);
+		$category = $_POST['category'];
+		$category = implode($category, ',');
+		$image = $_POST['image'];
+		$isi = addslashes($_POST['isi']);
+		$waktu = $_POST['time'];
+		$shoot = strip_tags($isi, "<b><u>");
+		$shoot = substr($shoot, 0, 400)."....";
+		$tanggal = $_POST['date'];
+		$do = $db->query("update article set title='$title', image='$image', category='$category', content='$isi', date='$tanggal', time='$waktu' where id='$art_id'");
+		if ($do){
+			header("location:post.mgb?msg=3");
+			exit();
+		}else{
+			echo "Opps.. something wrong! try again later";
+			exit();
+		}	
+	}
+}	
+?>

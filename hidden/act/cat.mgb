@@ -1,0 +1,37 @@
+<?PHP
+//action
+if (isset($_REQUEST['act'])){
+	require_once("anti_xss.php");
+	$act = $_REQUEST['act'];
+	if ($act == 'add'){
+		//add new category
+		$cat_name = $_POST['nama'];
+		$cat_link = $app->replace_char(strtolower($cat_name));
+		$cat_link = str_replace("&",'',$cat_link);
+		$cek_cat = $db->num_rows("select id from category where name='$cat_name'");
+		if ($cek_cat > 0){
+			$m_tipe = "danger";
+			$messages = "Category $cat_name already exist in your website! please input another name!<br><a href='cat.mgb'>Back</a>";
+			require_once("messages.php");
+			exit();
+		}else{
+			//do it
+			$data_insert = array("name"=>$cat_name,"link"=>$cat_link);
+			$db->insert("category",$data_insert);
+			header("location:cat.mgb?msg=1");
+		}
+	}else if($act=='delete'){
+		//delete
+		$h_id = abs((int)$_GET['id']);
+		if ($db->query("delete from category where id='$h_id'")){
+			header("location:cat.mgb?msg=2");
+		}
+	}else if($act=='view'){
+		//view
+		$h_id = abs((int)$_GET['id']);
+		$data_cat=$db->fetch("select link from category where id='$h_id'");
+		$my_destination = $app->get_link_cat($data_cat['link']);
+		header("location:$my_destination");
+	}
+}
+?>

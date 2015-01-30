@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://dewa.my.id/js/jquery.min.js"></script>
+<script type="text/javascript">
+					$(function () {
+							$('#statistik').highcharts({
+								chart: {
+									type: 'line',
+									marginRight: 50,
+									marginBottom: 25
+								},
+								title: {
+									text: 'Dately Average Page Hits',
+									x: -20 //center
+								},
+								subtitle: {
+									text: 'Source: megasoft-id.com',
+									x: -20
+								},
+								xAxis: {
+									categories: [ '2013-10-22','2013-10-21',]
+								},
+								series: [{
+									name: 'Visits',
+									data: [234,876,]
+								}],
+								yAxis: {
+									title: {
+										text: 'Page Hits'
+									},
+									plotLines: [{
+										value: 0,
+										width: 1,
+										color: '#808080'
+									}]
+								},
+								tooltip: {
+									valueSuffix: ' Page Hits'
+								},
+								legend: {
+									layout: 'vertical',
+									align: 'right',
+									verticalAlign: 'top',
+									x: -10,
+									y: 100,
+									borderWidth: 0
+								}
+								
+							});
+						});
+		</script>
+	</head>
+	<body>
+<script src="highcharts.js"></script>
+<div id="statistik" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+	</body>
+</html>
